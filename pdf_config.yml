@@ -1,0 +1,12 @@
+collections:
+  content:
+    output: true
+    permalink: /:path.html
+
+defaults:
+  - scope:
+      path: ""
+      type: content
+    values:
+      layout: pdf_page
+      toc: true

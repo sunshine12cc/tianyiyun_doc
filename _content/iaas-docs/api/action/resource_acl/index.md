@@ -1,0 +1,40 @@
+---
+---
+
+# 资源协作[¶](#api-resource-acl "永久链接至标题")
+
+我们收到过很多用户各种各样的需求，有说，“希望主账号能管理子账号的资源”， 或者是“开发人员只能使用云桌面功能”，或者是“提供资源分组”等等。总结起来，用户 希望能够在青云控制台上灵活地权限配置，达到不同部门以不同权限访问不同资源的效果。
+
+Collaboration 正是这样一种功能。
+
+通过 Collaboration ，可以让青云用户通过更细粒度的权限控制，将资源授权给其他用户，实现管理和协作。
+
+用一句话概括 Collaboration ，就是可以 将任意资源的特定权限授权给任意用户（包括子账号和其他青云账号） 。
+
+*   [DescribeSharedResourceGroups](DescribeSharedResourceGroups.html)
+*   [DescribeResourceGroups](DescribeResourceGroups.html)
+*   [CreateResourceGroups](CreateResourceGroups.html)
+*   [ModifyResourceGroupAttributes](ModifyResourceGroupAttributes.html)
+*   [DeleteResourceGroups](DeleteResourceGroups.html)
+*   [DescribeResourceGroupItems](DescribeResourceGroupItems.html)
+*   [AddResourceGroupItems](AddResourceGroupItems.html)
+*   [DeleteResourceGroupItems](DeleteResourceGroupItems.html)
+*   [DescribeUserGroups](DescribeUserGroups.html)
+*   [CreateUserGroups](CreateUserGroups.html)
+*   [ModifyUserGroupAttributes](ModifyUserGroupAttributes.html)
+*   [DeleteUserGroups](DeleteUserGroups.html)
+*   [DescribeUserGroupMembers](DescribeUserGroupMembers.html)
+*   [AddUserGroupMembers](AddUserGroupMembers.html)
+*   [ModifyUserGroupMemberAttributes](ModifyUserGroupMemeberAttributes.html)
+*   [DeleteUserGroupMembers](DeleteUserGroupMembers.html)
+*   [DescribeGroupRoles](DescribeGroupRoles.html)
+*   [CreateGroupRoles](CreateGroupRoles.html)
+*   [ModifyGroupRoleAttributes](ModifyGroupRoleAttributes.html)
+*   [DeleteGroupRoles](DeleteGroupRoles.html)
+*   [DescribeGroupRoleRules](DescribeGroupRoleRules.html)
+*   [AddGroupRoleRules](AddGroupRoleRules.html)
+*   [ModifyGroupRoleRuleAttributes](ModifyGroupRoleRuleAttributes.html)
+*   [DeleteGroupRoleRules](DeleteGroupRoleRules.html)
+*   [GrantResourceGroupsToUserGroups](GrantResourceGroupsToUserGroups.html)
+*   [RevokeResourceGroupsFromUserGroups](RevokeResourceGroupsFromUserGroups.html)
+*   [DescribeResourceUserGroups](DescribeResourceUserGroups.html)

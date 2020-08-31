@@ -1,0 +1,30 @@
+{% assign path = "http://127.0.0.1:4000"%}
+
+{% for i in site.data.toc %}
+  {% if i.exclude != true %}
+{{path}}/{{ i.url }}/pdf_index
+{{path}}/{{ i.url }}/pdf_toc
+{{path}}/{{ i.url }}
+      {% if i.sub[0] %}
+          {% for j in i.sub %}
+            {% if j.exclude != true %}
+{{path}}/{{ i.url }}/{{ j.url }}
+                {% if j.sub[0] %}
+                  {% for k in j.sub %}
+                    {% if k.exclude != true %}
+{{path}}/{{ i.url }}/{{ j.url }}/{{ k.url }}
+                      {% if k.sub[0] %}
+                        {% for l in k.sub %}
+                          {% if l.exclude != true %}
+{{path}}/{{ i.url }}/{{ j.url }}/{{ k.url }}/{{ l.url }}
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+            {% endif %}
+          {% endfor %}
+      {% endif %}
+  {% endif %}
+{% endfor %}

@@ -1,0 +1,47 @@
+title: QingCloud Product Docs
+email: contactus@yunify.com
+description: QingCloud Product Docs
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://docs.qingcloud.com" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: yunifytech
+
+collections:
+  content:
+    output: true
+    permalink: /:path.html
+
+defaults:
+  - scope:
+      path: ""
+      type: content
+    values:
+      layout: page
+      toc: true
+  - scope:
+      path: "serach"
+      type: pages
+    values:
+      layout: serach
+
+# Build settings
+markdown: kramdown
+theme: minima
+gems:
+  - jekyll-feed
+  - jekyll-toc
+  - jekyll-sitemap
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - scripts/
+  - venv/
+  - _data/
+  - Makefile
+  - README.md
+  - .gitignore
+  - .gitmodules
+  - index.yml
+  - public_config.yml
+  - private_config.yml
+
+private: false

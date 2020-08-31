@@ -1,0 +1,229 @@
+- title: QingStor 对象存储
+  url: qingstor
+  sub:
+    - title: 产品简介
+      url: index
+    - title: 消费说明
+      url: price
+    - title: 快速入门
+      exclude: true
+    - title: 访问控制
+      url: access_control
+    - title: 访问日志归档
+      url: logging
+    - title: 生命周期
+      url: lifecycle
+    - title: 跨区域复制
+      url: replication
+    - title: 数据加密
+      url: encryption
+    - title: 数据处理
+      url: data_process
+      sub:
+        - title: 图片处理
+          url: image_process
+        - title: 音视频转码
+          url: media_transcoder
+        - title: 第三方数据处理
+          url: third_party
+    - title: 场景化解决方案
+      url: solutions
+      sub:
+        - title: 数据迁移
+          url: migrate
+        - title: 实时数据增量备份
+          url: backup
+        - title: 移动 APP 接入
+          url: app_integration
+        - title: 静态网站托管
+          url: web_hosting
+    - title: 控制台指南
+      url: guide
+      sub:
+        - title: Bucket 管理
+          url: bucket_manage
+        - title: 文件夹管理
+          url: folder_manage
+        - title: Object 管理
+          url: object_manage
+        - title: 数据处理
+          url: data_process
+        - title: 监控与报表
+          url: monitor
+    - title: API 文档
+      url: api
+      sub:
+        - title: 简介
+          url: common/overview
+        - title: 公共字段
+          url: common/common_header
+        - title: 扩展字段
+          url: common/extend_header
+        - title: 错误信息
+          url: common/error_code
+        - title: 签名验证
+          url: common/signature
+        - title: 自定义元数据
+          url: common/metadata
+        - title: 数据加密
+          url: common/encryption
+        - title: Service API
+          url: service
+          sub:
+            - title: GET Service (List Buckets)
+        - title: Bucket API
+          url: bucket
+          sub:
+            - title: GET Bucket (List Objects)
+              url: get
+            - title: PUT Bucket
+              url: put
+            - title: DELETE Bucket
+              url: delete
+            - title: Delete Multiple Objects
+              url: delete_multiple
+            - title: HEAD Bucket
+              url: head
+            - title: GET Bucket Statistics
+              url: get_stats
+            - title: List Multipart Uploads
+              url: list_multipart_uploads
+            - title: Bucket ACL
+              url: acl
+            - title: Bucket CORS
+              url: cors
+            - title: Bucket Policy
+              url: policy
+            - title: Bucket External Mirror
+              url: external_mirror
+            - title: Bucket Notification
+              url: notification
+            - title: Bucket CNAME
+              exclude: true
+              url: cname
+            - title: Bucket Website
+              exclude: true
+              url: website
+            - title: Bucket Lifecycle
+              url: lifecycle
+            - title: Bucket Logging
+              url: logging
+            - title: Bucket Replication
+              url: replication
+        - title: Object API
+          url: object
+          sub:
+            - title: GET Object
+              url: get
+            - title: POST Object
+              url: post
+            - title: PUT Object
+              url: put
+            - title: PUT Object - Copy
+              url: copy
+            - title: PUT Object - Move
+              url: move
+            - title: PUT Object - Fetch
+              url: fetch
+            - title: Append Object
+              url: append
+            - title: DELETE Object
+              url: delete
+            - title: HEAD Object
+              url: head
+            - title: OPTIONS Object
+              url: options
+            - title: Multipart
+              url: multipart
+              sub:
+                - title: Initiate MultiPart Upload
+                  url: initiate_multipart_upload
+                - title: Upload Object Part
+                  url: upload_multipart
+                - title: Copy Object Part
+                  url: copy_multipart
+                - title: List Object parts
+                  url: list_multipart
+                - title: Abort Multipart Upload
+                  url: abort_multipart_upload
+                - title: Complete Multipart Upload
+                  url: complete_multipart_upload
+    - title: SDK 文档
+      url: sdk
+      sub:
+        - title: Python SDK
+          url: python
+          sub:
+            - title: 新版 Python SDK
+              url: qingstor_sdk
+            - title: 旧版 Python SDK
+              url: qingcloud_sdk
+        - title: Go SDK
+          url: go
+        - title: Ruby SDK
+          url: ruby
+        - title: PHP SDK
+          url: php
+        - title: JavaScript SDK
+          url: js
+        - title: Swift SDK
+          url: swift
+        - title: Java SDK
+          url: java
+        - title: Scala SDK
+          url: scala
+        - title: .NET SDK
+          url: net
+        - title: C/C++ SDK
+          url: cpp
+    - title: 客户端工具
+      url: developer_tools
+      sub:
+        - title: qingstor-cli
+          url: cli
+        - title: qsctl
+          url: qsctl
+        - title: qscamel
+          url: qscamel
+        - title: qsftpd
+          url: qsftpd
+        - title: 本地盘工具
+          url: local_fs_tools
+          sub:
+            - title: qsfs(Alpha)
+              url: qsfs
+            - title: Mountain Duck
+              url: mountain_duck
+        - title: snips
+          exclude: true
+        - title: qingstor-demo-signature-server-nodejs
+          exclude: true
+    - title: 第三方集成文档
+      url: third_party_integration
+      sub:
+        - title: Logstash Input QingStor
+          url: logstash_input
+        - title: Logstash Output QingStor
+          url: logstash_output
+        - title: WordPress plugin for QingStor
+          url: wordpress_plugin_for_qingstor
+    - title: S3 兼容
+      url: s3
+      sub:
+        - title: 兼容接口
+          url: compatible_apis
+        - title: 兼容公共头
+          url: compatible_headers
+        - title: 兼容工具
+          url: compatible_tools
+        - title: 使用示例
+          url: examples
+          # sub:
+          #   - title: s3fs
+          #   - title: S3 Browser
+          #   - title: CloudBerry Drive
+          #   - title: Commavault
+    - title: 历史变更
+      url: history
+    - title: FAQ 常见问题
+      url: faq

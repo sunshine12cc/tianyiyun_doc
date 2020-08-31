@@ -1,0 +1,35 @@
+---
+layout: default
+---
+{% if page.private != true or site.private == true %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/pdf.css">
+</head>
+<body>
+
+  <!-- content start -->
+  <section class="section docs">
+    <div class="content">
+      <div class="container">
+        <div class="columns">
+          <div class="column docs-content">
+              {{ content | toc }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- content end -->
+</body>
+</html>
+
+{% else %}
+404
+{% endif %}

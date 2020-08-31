@@ -1,0 +1,65 @@
+- title: QingCloud 应用中心开发文档
+  url: appcenter1
+  sub:
+    - title: 概述
+      url: common/overview.html
+      sub:
+        - title: 文档对象
+          url: common/overview.html#id2
+        - title: 基本原则
+          url: common/overview.html#id3
+    - title: 应用开发教程
+      url: common/tutorial.html
+      sub:
+        - title: 示例程序
+          url: common/tutorial.html#id2
+        - title: 授权
+          url: common/tutorial.html#id4
+        - title: 用户账户对接
+          url: common/tutorial.html#id6
+        - title: 通过青云API访问用户资源
+          url: common/tutorial.html#api
+        - title: 提交青云应用
+          url: common/tutorial.html#id8
+    - title: 应用开发教程2
+      url: common/tutorial2.html
+      sub:
+        - title: 计费原则
+          url: common/tutorial2.html#id2
+        - title: 创建应用服务
+          url: common/tutorial2.html#service-id
+        - title: 事件通知
+          url: common/tutorial2.html#event-notification
+    - title: 开发者工具
+      url: common/tutorial3.html
+      sub:
+        - title: appcenter.css 样式库
+          url: common/tutorial3.html#appcenter-css
+        - title: qclib.js 工具包
+          url: common/tutorial3.html#qclib-js
+        - title: toolbar & button
+          url: common/tutorial3.html#toolbar-button
+        - title: 表格
+          url: common/tutorial3.html#id2
+        - title: form表单
+          url: common/tutorial3.html#form
+        - title: tooltip
+          url: common/tutorial3.html#tooltip
+        - title: 弹出层
+          url: common/tutorial3.html#id3
+        - title: 提示框
+          url: common/tutorial3.html#id4
+        - title: 图表
+          url: common/tutorial3.html#id5
+    - title: APP API
+      url: api/index.html
+      sub:
+        - title: DescribeUsers
+          url: api/describe_users.html
+        - title: LeaseApp
+          url: api/lease_app.html
+        - title: UnLeaseApp
+          url: api/unlease_app.html
+        - title: DescribeAppResources
+          url: api/describe_app_resources.html
+

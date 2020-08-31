@@ -1,0 +1,49 @@
+<!DOCTYPE html lang="zh-CN" class="no-js no-svg">
+<html>
+{% include head.html %}
+<body>
+{% include navmenu.html %}
+<section class="hero docs-hero">
+  <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered media">
+                <div class="media-content column is-6">
+                    <p class="title has-text-centered">帮助与文档</p>
+                    <div class="subtitle has-text-centered">
+                      我们为你提供丰富、详尽的使用指南以及产品文档
+                    </div>
+                    <form action="/search.html" method="GET">
+                        <div class="control has-icons-left docs-search-input">
+                            <input class="input" id="search-input" name="q" type="search" placeholder="搜索" autocomplete="off" />
+                            <span class="icon is-small is-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <g fill="#68747F" fill-rule="evenodd">
+                                <path d="M14.968 14.192l2.874 2.874-.776.776-2.874-2.874c.294-.22.556-.482.776-.776z"/>
+                                <path d="M17.776 17l2.874 2.874-.776.776L17 17.776c.294-.22.556-.482.776-.776zM10 17a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-1a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
+                                </g>
+                            </svg>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+  </div>
+</section>
+<script>
+$(function () {
+    if (navigator.platform.indexOf('Win') > -1) {
+        $('.docs-content a').off('click').on('click', function (e) {
+            var hash = decodeURI($(this).get(0).hash);
+            var href = $(this).attr('href');
+            if (hash === '') return;
+            e.preventDefault();
+            if (href === hash) {
+                location.hash = encodeURI(hash);
+            } else {
+                location.href = encodeURI(href);
+            }
+        });
+    }
+});
+</script>

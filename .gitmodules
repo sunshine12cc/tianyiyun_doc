@@ -1,0 +1,24 @@
+[submodule "_content/qingstor"]
+	path = _content/qingstor
+	url = https://git.internal.yunify.com/qingcloud-product-docs/qs-docs.git
+[submodule "_content/product"]
+	path = _content/product
+	url = https://git.internal.yunify.com/qingcloud-product-docs/qingcloud-iaas-docs.git
+[submodule "_content/appcenter"]
+	path = _content/appcenter
+	url = https://git.internal.yunify.com/qingcloud-product-docs/appcenter-docs.git
+[submodule "_content/imageapp"]
+	path = _content/imageapp
+	url = https://git.internal.yunify.com/qingcloud-product-docs/imageapp.git
+[submodule "_content/appcenter1"]
+	path = _content/appcenter1
+	url = https://git.internal.yunify.com/qingcloud-product-docs/appcenter1.0-docs.git
+[submodule "_content/express"]
+	path = _content/express
+	url = https://git.internal.yunify.com/qingcloud-product-docs/express-docs.git
+[submodule "_content/iaas-docs"]
+	path = _content/iaas-docs
+	url = https://git.internal.yunify.com/qingcloud-product-docs/iaas-docs.git
+[submodule "_content/anybox-docs"]
+	path = _content/anybox-docs
+	url = https://git.internal.yunify.com/qingcloud-product-docs/anybox.git

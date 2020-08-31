@@ -1,0 +1,29 @@
+---
+layout: default
+---
+{% if page.private != true or site.private == true %}
+{% include header.html %}
+<!-- content start -->
+<section class="section docs">
+  <div class="content">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-3">
+            <aside class="menu">
+              <ul class="menu-list">
+                  {% include menu.html %}
+              </ul>
+            </aside>
+        </div>
+        <div class="column is-9 docs-content">
+            {{ content | toc }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- content end -->
+{% include footer.html %}
+{% else %}
+404
+{% endif %}

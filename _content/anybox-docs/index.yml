@@ -1,0 +1,15 @@
+- title: ANYBOX 内容协作平台
+  url: anybox-docs
+  sub:
+    - title: 简介
+      url: introduction
+    - title: 安装指南
+      url: installation
+    - title: 管理员手册
+      url: admin
+    - title: Web端手册
+      url: web
+    - title: Windows端手册
+      url: windows
+    - title: Mac客户端手册
+      url: mac

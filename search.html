@@ -1,0 +1,181 @@
+---
+layout: default
+---
+{% if page.private != true or site.private == true %}
+{% include header.html %}
+<!-- content start -->
+<section class="section docs">
+  <div class="content">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-3">
+            <aside class="menu">
+              <ul class="menu-list">
+                {% include menu.html %}
+              </ul>
+            </aside>
+        </div>
+        <div class="column is-8 search-content">
+          <h3 class="results-title">搜索结果 <span class="result-count"></span></h3>
+          <p class="no-results">没有找到您期望的内容，请尝试其他搜索词，请拨打我们的咨询电话 4008576886，或发邮件至 contactus@yunify.com。</p>
+          <div class="search-results"></div>
+          <div class="search-pagination">
+            
+            <div class="search-pagers"></div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style scoped>
+  .content p.no-results {
+    display: none;
+    font-size: 14px;
+    color: #a1a6ab;
+    line-height: 30px;
+  }
+  .docs-search-input {
+    margin-top: 40px;
+  }
+  .docs-search-input input.input {
+    outline: none;
+    border-radius: 20px;
+    border: solid 1px #dee0e7;
+  }
+  .docs-search-input input.input:hover,
+  .docs-search-input input.input:active,
+  .docs-search-input input.input:focus {
+    border: solid 1px #00a971;
+    box-shadow: none;
+  }
+  .content h3.results-title {
+    border-bottom: 0 none;
+    margin-bottom: 20px;
+    line-height: 40px;
+  }
+  .content .result-title {
+    margin-bottom: 10px;
+    line-height: 22px;
+    color: #3e464c
+  }
+  .content .result-title a {
+    color: #3e464c
+  }
+  .content .result-title a em {
+    font-style: normal;
+    color: #00a971;
+  }
+  .content .result-title a:hover{
+    color: #00a971;
+  }
+  .content .result-thumbnail {
+    line-height: 30px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #68747f;
+  }
+  .content .result-thumbnail em {
+    color: #00a971;
+    font-style: normal;
+  }
+</style>
+
+<script>
+jQuery(function() {
+  var apiUrl = '/api/search/';
+  var reg = new RegExp("(^|&)q=([^&]*)(&|$)");
+  var r = window.location.search.substr(1).match(reg);
+  var PageUrl = decodeURI(window.location.search.substr(1));
+  var sURLVariables = PageUrl.split('&');
+  if(r != null ) {
+    renderResult(decodeURI(r[2]), 1);
+  } else {
+    $('.no-results').show();
+  }
+
+
+  function renderResult(params, pager) {
+    $('#search-input').val(params.replace(/\+/g, ' '));
+    $.ajax({
+        method: "POST",
+        url: apiUrl,
+        data: {q: params.replace(/\+/g, ' '), pager,'cate':'文档'},
+        dataType: "json",
+        // contentType: 'application/json',
+    }).done(function(data) {
+        if (data.hits.total == 0) {
+          $('.no-results').show();
+          return;
+        }
+        $('.result-count').html('（'+ data.hits.total +'）');
+        var results = '';
+        $.each(data.hits.hits, function(index, item) {
+          var title = item.highlight.title || item._source.title;
+          var body = sub_str(item.highlight.content || item._source.content,400);
+          results +=
+            '<div class="result-item">' +
+              '<h5 class="result-title">' +
+                '<a href="' + item._source.url + '">' + title + '</a>'+
+              '</h5>' +
+              '<p class="result-thumbnail">' + body + '</p>' +
+            '</div>';
+        });
+
+        $('.search-results').html(results);
+        $(".search-pagination").html(pagination(data.hits.total, pager));
+      }).fail(function(request, error) {
+        $('.no-results').show();
+      });
+  }
+
+  $(document).on('click', ".pager-item", function() {
+    var pagerNumber = $(this).attr("data-num");
+    $(this).addClass('is-active');
+    renderResult(decodeURI(r[2]), pagerNumber);
+  });
+
+	function sub_str(str,n){
+	  var r=/[^\x00-\xff]/g;
+	  if(str.replace(r,"mm").length<=n){return str;}
+	  var m=Math.floor(n/2);
+	  for(var i=m;i<str.length;i++){
+		  if(str.substr(0,i).replace(r,"mm").length>=n){
+			  return str.substr(0,i)+"...";
+		  }
+	  }
+	  return str;
+	}
+
+  function pagination(total, currentPager) {
+    var totalPager = parseInt((total+ 9) / 10);
+    var pagerPrev = '', pagerNext = '', pagerItems = '';
+    if(totalPager > 1) {
+      if(currentPager != 1) {
+        pagerPrev = '<div class="pager-prev pager-item" href="javascript:;" data-num="'+ (currentPager - 1) +'">上一页</div>';
+      }
+      pagerItems += '<div class="search-pagers">';
+      for(var i=1; i <= totalPager; i++) {
+        let pager_active = '';
+        if(i == currentPager) pager_active = 'is-active';
+        pagerItems +=
+        '<a href="javascript:;" class="pager-item '+ pager_active + '" data-num="' + i + '">' + i + '</a>';
+      }
+      pagerItems += '</div>';
+      if(currentPager != totalPager) {
+        var nextPager = parseInt(currentPager)+1;
+        pagerNext = '<div class="pager-next pager-item" href="javascript:;" data-num="'+ nextPager +'">下一页</div>';
+      }
+    }
+    return pagerPrev + pagerItems + pagerNext;
+  }
+});
+</script>
+<link href="./assets/css/search.css" rel="stylesheet"/>
+<!-- content end -->
+{% include footer.html %}
+{% else %}
+404
+{% endif %}

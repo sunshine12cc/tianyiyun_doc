@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/pdf.css">
+</head>
+<body>
+
+
+{% for i in site.data.toc %}
+  {% if i.exclude != true %}
+      <li><a href="/{{ i.url }}">{{ i.title }}</a>
+      {% if i.sub[0] %}
+          <ul>
+          {% for j in i.sub %}
+            {% if j.exclude != true %}
+                  <li><a href="/{{ i.url }}/{{ j.url }}">{{ j.title }}</a>
+                {% if j.sub[0] %}
+                    <ul>
+                  {% for k in j.sub %}
+                    {% if k.exclude != true %}
+                        <li><a href="/{{ i.url }}/{{ j.url }}/{{ k.url }}">{{ k.title }}</a>
+                      {% if k.sub[0] %}
+                          <ul>
+                        {% for l in k.sub %}
+                          {% if l.exclude != true %}
+                              <li><a href="/{{ i.url }}/{{ j.url }}/{{ k.url }}/{{ l.url }}">{{ l.title }}</a>
+                          </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </li>
+                    {% endif %}
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endif %}
+{% endfor %}
+
+</body>
+</html>

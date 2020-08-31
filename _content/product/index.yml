@@ -1,0 +1,191 @@
+- title: QingCloud 平台产品文档
+  url: product
+  sub:
+    - title: 快速入门
+      url: quick_start
+      sub:
+        - title: 快速上手指南
+          url: quick_start.html
+        - title: 账户管理
+          url: account/index.html
+        - title: 定价原则
+          url: pricing.html
+        - title: IPv6快速使用指南
+          url: IPv6_quick_start
+    - title: 区域与可用区
+      url: region
+    - title: 计算
+      url: computing
+      sub:
+        - title: 虚拟主机
+          url: instance.html
+        - title: 连接主机
+          url: connect_instance.html
+        - title: 自定义数据
+          url: userdata.html
+        - title: 物理主机
+          url: bm_instance.html
+        - title: GPU 主机
+          url: gpu_instance.html
+        - title: 专属宿主机
+          url: dedicated_host.html
+        - title: 映像
+          url: image.html
+        - title: 网卡
+          url: nic.html
+        - title: 自有映像、备份的跨区复制
+          url: copy_resources_zones.html
+        - title: 安置策略组
+          url: instance_group.html
+        - title: 预留合约计费模式
+          url: reserved_contract.html
+        - title: 跨区域迁移方案
+          url: cross_regional_migration.html
+        - title: 加密
+          url: encryption.html
+        - title: 如何将ECS迁移到青云QingCloud
+          url: ecs2qing.html
+        - title: 常见问题及解答
+          url: faq_docs.html
+    - title: 光格 SD-WAN
+      url: sd_wan
+      sub:
+        - title: 快速入门
+          url: quick_start
+          sub:
+            - title: 光盒连VPC
+              url: cpe_connect_vpc.html
+            - title: 专线连VPC
+              url: line_connect_vpc.html
+            - title: VPC跨区连VPC
+              url: vpc_connect_vpc.html
+            - title: 光盒经VPC访问第三方网络
+              url: cpe_connect_tunnel.html
+            - title: 专线经VPC访问公网
+              url: line_connect_eip.html
+            - title: 基于光盒目录添加内网路由策略
+              url: cpe_directory.html
+        - title: 光盒
+          url: cpe.html
+        - title: WAN 接入
+          url: wan_access.html
+    - title: 存储
+      url: storage
+      sub:
+        - title: 块存储
+          url: volume
+          sub:
+            - title: 基础型
+              url: basic_volume.html
+            - title: SSD 企业型
+              url: ssd_enterprise_volume.html
+            - title: 性能型
+              url: performance_volume.html
+            - title: 超高性能型
+              url: super_high_performance_volume.html
+            - title: 企业级分布式SAN（NeonSAN）
+              url: super_high_performance_shared_volume.html
+            - title: 容量型
+              url: capacity_volume.html
+            - title: 主机系统盘扩容
+              url: system_volume_resize.html
+            - title: 云硬盘的使用指南
+              url: how_to_use.html
+        - title: 文件存储
+          url: vnas.html
+        - title: 共享存储
+          url: shared
+          sub:
+            - title: vSAN
+              url: vsan.html
+            - title: 企业级分布式SAN（NeonSAN）
+              url: enterprise_distributed_san.html
+        - title: 备份
+          url: snapshot.html
+    - title: 安全与权限
+      url: security
+      sub:
+        - title: 防火墙
+          url: security_group.html
+        - title: Web 应用防火墙
+          url: waf.html
+        - title: 网络访问控制
+          url: network_acl.html
+        - title: DDOS 防护
+          url: ddos_defense.html
+        - title: SSL 证书服务
+          url: ssl.html
+        - title: 帐号安全与认证
+          url: account_authentication.html
+        - title: 资源协作
+          url: collaboration.html
+        - title: 子帐户管理
+          url: sub_account.html
+    - title: 数据库与缓存
+      url: database_cache
+      sub:
+        - title: MySQL Plus
+          url: app_mysql_plus/index.html
+        - title: PolonDB
+          url: polondb/index.html
+        - title: RadonDB
+          url: radondb/index.html
+        - title: PostgreSQL
+          url: postgresql/index.html
+        - title: ChronusDB
+          url: app_ChronusDB/index.html
+          sub:
+            - title: ChronusDB 介绍
+              url: app_ChronusDB/app_ChronusDB_introduction/index.html
+            - title: ChronusDB 使用方法
+              url: app_ChronusDB/app_ChronusDB_use/index.html
+        - title: MongoDB
+          url: mongodb_replication/index.html
+        - title: Redis Standalone
+          url: redis-standalone/index.html
+        - title: Redis Cluster
+          url: redis-cluster/index.html
+        - title: Memcached
+          url: memcached/index.html
+    - title: 消息队列与中间件
+      url: middware
+      sub:
+        - title: Kafka 服务
+          url: kafka/README.html
+        - title: RabbitMQ 服务
+          url: rabbitmq.html
+        - title: RocketMQ 服务
+          url: rocketmq.html
+        - title: Tomcat 服务
+          url: tomcat.html
+    - title: 大数据平台
+      url: big_data
+      sub:
+        - title: CDH
+          url: CDH.html
+        - title: ELK
+          url: elk.html
+        # - title: Elasticsearch
+        #  url: elk
+        # - title: Hadoop
+        #  url: QingMR/README.html
+        - title: HBase
+          url: hbase/README.html
+        - title: Hive
+          url: QingMR/README.html
+        - title: Nifi
+          url: nifi/README.html
+        - title: Kafka
+          url: kafka/README.html
+        - title: Kylin
+          url: QingMR/README.html
+        - title: QingMR
+          url: QingMR/README.html
+        # - title: RabbitMQ
+        #   url: rabbitmq/README.html
+        # - title: Spark
+        #  url: QingMR/README.html
+        - title: Storm
+          url: storm/README.html
+        - title: ZooKeeper
+          url: zk/README.html

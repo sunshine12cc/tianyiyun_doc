@@ -1,0 +1,88 @@
+- title: 青立方超融合易捷版
+  url: express
+  sub:
+    - title: 产品简介
+      url: introduction
+      sub:
+        - title: 什么是青立方超融合易捷版
+          url: intro
+        - title: 产品功能
+          url: features
+        - title: 产品优势
+          url: advantages
+        - title: 应用场景
+          url: scenarios
+        - title: 硬件规格
+          url: configuration
+    - title: 安装指南
+      url: installation
+      sub:
+        - title: 预安装说明
+          url: preinstall
+        - title: 使用 Web Installer 安装
+          url: web-installer
+    - title: 概览
+      url: overview
+    - title: 物理资源
+      url: physical
+      sub:
+        - title: 计算节点
+          url: hypernodes
+        - title: 管理节点
+          url: managenodes
+        - title: 存储池管理
+          url: storagepool
+        - title: 资源图形化
+          url: topology
+    - title: 虚拟资源
+      url: virtual
+      sub:
+        - title: 虚拟机
+          url: vm
+        - title: 镜像
+          url: image
+        - title: 网络 - 虚拟网卡
+          url: nic
+        - title: 网络 - IP 池
+          url: ip-pool
+        - title: 存储 - 硬盘
+          url: volume
+        - title: 安全
+          url: firewall
+        - title: SSH 密钥
+          url: ssh
+        - title: 设备透传 - USB
+          url: usb
+        - title: 设备透传 - GPU
+          url: gpu
+    - title: 备份
+      url: backup
+    - title: 公有云接入
+      url: public
+    - title: 运维工具
+      url: operation
+      sub:
+        - title: 定时器
+          url: schedulers
+        - title: 安置策略组
+          url: instance_groups
+        - title: 操作日志
+          url: activities
+        - title: 监控告警
+          url: alert
+        - title: V2V迁移
+          url: v2v
+        - title: 标签
+          url: labels
+        - title: 回收站
+          url: recyclebins
+    - title: 用户管理
+      url: users
+    - title: 进阶指南
+      url: advanced
+      sub:
+        - title: 配置中心
+          url: configuration
+        - title: 内部迁移
+          url: migrate
+        

@@ -1,0 +1,315 @@
+---
+---
+
+# Tomcat Cluster on QingCloud AppCenter 用户手册
+
+> - _`New`_ 当前版本已支持新功能 滚动升级 和 禁用管理员界面
+
+## 描述
+
+[Apache Tomcat](http://tomcat.apache.org/) 是一个开源的，使用极为广泛的轻量级应用服务器之一。
+
+`Tomcat Cluster on QingCloud AppCenter` 将 Tomcat 集群通过云应用的形式在 QingCloud AppCenter 部署，具有如下特性：
+
+- 集成 **Tomcat 7.0.85，8.5.28 以及 9.0.5** 三个版本，其功能特性可参见 <http://tomcat.apache.org>
+- 使用 Tomcat DeltaManger 实现多对多（all-to-all）会话复制(session replication)，支持随 Tomcat 发布的 **SimpleTcpCluster**，通过内存（in-memory）实现 session replicaton，同时也可选择通过Redis（***Standalone***）数据库存储 session 数据
+- 可选择配置连接 MySql 数据库来存储业务数据 
+- 集成 Tomcat Manager，通过配置 Tomcat 管理员用户名／密码，访问 Tomcat Manager Console 或者 URL 方式完成 WAR 文件部署、启停等动作 <http://tomcat.apache.org/tomcat-7.0-doc/manager-howto.html>，WAR 文件通过 **FarmWarDeployer** 分发到各个节点
+- 可使用 QingStor 存储 WAR 文件，在 Tomcat 集群创建时配置相应 QingStor 访问参数，集群启动时自动下载并完成 WAR 文件部署，也可通过集群管理页面菜单多次部署不同 WAR 文件
+- 提供日志节点统一保存各 Tomcat 节点日志，同时用户可通过日志节点登录到 Tomcat 节点
+- 支持横向与纵向扩容与缩容
+- 运行环境可选择使用 **OpenJDK 1.7.0_75-b13，1.8.0_172-ea-b03 或者 9.0.4+11 作为 Java 运行环境**，日志输出使用 log4j 1.2.17
+
+## 创建步骤
+
+### 第1步: 基本设置
+
+![第1步: 基本设置](basic_config.png)
+
+根据自己的需求填写 `名称` 和 `描述`，不影响集群的功能，版本一般建议选择最新版本。
+
+### 第2步: Tomcat 节点设置
+
+由于需要部署多个 Tomcat 节点，需预先创建青云的负载均衡器：
+
+#### 申请公网 IP
+
+![申请公网 IP](apply_eip.png)
+
+如果集群需要在公网上提供服务，我们需要创建一个公网 IP。
+
+如果该公网 IP 还需要绑定域名，还需要进行备案。
+
+#### 创建负载均衡器
+
+然后我们需要创建一个公网或者私网负载均衡器，以公网负载均衡器为例，负载均衡器类型需选择公网并绑定公网 IP，创建完成后需创建 http 协议的监听器，端口为最终用户在浏览器上所访问的端口，比如 80，监听器需开启“会话保持”，其它选项认根据实际业务需求填写：  
+
+![创建负载均衡器](create_lb.png)
+
+创建成功后在该负载均衡器下创建一个监听器：
+
+![创建监听器](create_listener.png)
+
+##### 注意
+
+- **监听器所设置的端口即为期待最终用户在浏览器所访问的端口**  
+- **监听器需开启会话保持**  
+
+
+#### 配置 Tomcat 节点
+
+准备工作完成以后即可开始设置 Tomcat 节点：
+
+![配置 Tomcat 节点](node_config.png)
+
+分别选择自己之前创建的负载均衡器与监听器，转发策略保持为空即可（可选步骤）。
+
+CPU，内存，节点数量，实例类型和磁盘大小根据自己实际需求进行选择即可，例如：
+
+- CPU: 2核
+- 内存: 4G
+- 节点数量: 3
+- 实例类型: 超高性能型
+- 磁盘大小: 100G
+
+### 第3步: 日志收集节点设置
+
+创建 Tomcat 集群的时候会默认创建一台主机用于收集各个 Tomcat 节点的日志，日志通过 rsyslog 方式发送，Tomcat 基于 log4j-1.2.17 产生日志，直接发送给日志服务器，本地不保留以减少硬盘占用，除 Tomcat 运行环境默认开启的日志，此应用另外开启了 Access 日志以及 Garbage Collection 日志。
+
+![第3步: 日志收集节点设置](log_config.png)
+
+日志文件按照主机名统一保存在挂在磁盘 /data/TomcatLogData 目录下，rsyslog 配置文件为 /etc/rsyslog.conf，同时节点提供 ssh 访问权限，用户可根据自身需求调整 rsyslog 的配置，**默认用户名密码为 root/tomcat0pwd**。  
+
+### 第4步: 网络配置
+
+选择需要加入的私有网络
+
+![第4步: 网络配置](vpc_choose.png)
+
+**Tomcat SimpleTcpCluster 使用网络组播的方式进行节点之间消息通信，如您的 VPC 绑定了防火墙，请确保相关端口放行：45564（UDP BroadCast），4000（TCP Receiver）**  
+
+### 第5步: 依赖服务设置
+
+Tomcat 集群可以选择依赖的 Redis（Standalone） 和 MySql 服务实现 Session 复制及业务数据存储，通过依赖服务可以实现参数自动获取，服务变化感知等功能，只能在集群部署之前选择添加，部署之后只能选择删除。
+
+#### 可选：Redis 数据库实现 Session 复制
+
+![可选：Redis 数据库实现 Session 复制](redis_choose.png)
+
+点击放大镜按钮，弹出窗口会将**当前私有网络**下运行的集群列出，选择预先部署的 Redis 集群，相关 Redis 参数会自动获取，比如 IP 地址，端口等，用户只需在第六步环境参数中输入数据库库号即可。
+
+![可选：Redis 数据库实现 Session 复制](redis_config.png)
+
+Redis 数据库应用可以在 AppCenter 控制台中创建
+
+`AppCenter -> 浏览应用 -> Redis On QingCloud -> 部署到 QingCloud`，之后选择区域及填写所需参数提交即可。
+
+
+##### 注意
+
+- 此版本 Tomcat 集群应用只支持 Redis Standalone.
+
+#### 可选：MySql 数据库用于存储业务数据
+
+![可选：MySql 数据库用于存储业务数据](mysql_choose.png)
+
+点击放大镜按钮，弹出窗口会将**当前私有网络**下运行的集群列出，选择预先部署的 MySql 集群，相关 MySql 参数会自动获取，比如 IP 地址，端口等，用户只需在第六步环境参数中输入数据库名称，以及 jdbc 连接池配置即可。
+
+![可选：MySql 数据库用于存储业务数据](mysql_config.png)
+
+MySql 数据库应用可以在 AppCenter 控制台中创建
+
+`AppCenter -> 浏览应用 -> QingCloud MySql Plus -> 部署到 QingCloud`，之后选择区域及填写所需参数提交即可。
+
+
+### 第6步: 服务环境参数设置
+
+#### 配置 Tomcat 环境参数
+
+![第6步: 服务环境参数设置](tomcat_config.png)
+
+以上为 Tomcat 相关参数，填写完成后如果直接点击 `提交`，就会直接进入部署应用。如依赖服务中没有选择 Redis，会使用 Tomcat 自带的 **SimpleTcpCluster** 模块，通过内存同步 Session 数据，并且没有部署任何第三方 WAR 文件。
+
+##### 配置说明
+
+1. 默认使用 Java 8 启动Tomcat，用户可根据实际需求选择 Java 版本，**注意：Tomcat 9 不支持 Java 7**。
+1. 默认使用 Tomcat 7，用户可根据实际需求选择其他版本。
+1. 访问 Tomcat 管理员图形界面的用户名用于访问 Tomcat 管理员界面，由于 Tomcat 内置了 tomcat 用户（我们通过此用户获取 Tomcat 服务器监控数据），所以**此处不能选择 `tomcat` 作为用户名**。如果希望**禁用管理员界面**，可在此处设置为空用户名。
+1. 访问 Tomcat 管理员服务的密码同时被应用于内置用户 tomcat，即更改此密码，会同时作用于环境变量中的 Tomcat 用户名以及内置用户 tomcat。
+1. 为保证性能和用户体验，当前 Tomcat 在启动服务时为 JRE 配置了参数 `-Djava.security.egd=file:/dev/./urandom` 从而避免使用 SecureRandom 类为 session id 提供随机数值（原始配置会在服务器启动及运行时造成不同程度的延时，<https://wiki.apache.org/tomcat/HowTo/FasterStartUp>）
+1. Tomcat 字符编码方式的配置会被分别设置在 JAVA_OPTS （-Djavax.servlet.request.encoding=UTF-8 -Dfile.encoding=UTF-8） 以及 server.xml 中，前者会作为环境变量被 Tomcat 的启动脚本使用。
+1. Tomcat 基于 log4j 1.2.17，默认日志级别为 INFO，用户可下拉选择更改。
+1. 本集群使用 Tomcat 共享线程池。
+1. 如果 WAR 文件的获取方式选择了 Tomcat Manager，可以通过通过负载均衡器的地址访问 Tomcat Manager <http://load-balancer-address:listener-port> ，这时访问的是某一节点的 Tomcat Manager ，输入用户名和密码，上传 WAR 文件完成部署。**注意，Tomcat Manager 并不支持集群分发部署，也就是说这个 WAR 现在只是在当前节点部署成功，之后青云提供的监控脚本会发现这个新部署的文件夹，并复制到 Tomcat FarmWarDeployer 监控的目录中，这样 FarmWarDeployer 会通知其他节点，实现分发部署。为避免陷入各节点循环复制部署，脚本需比较 WAR 目录下 META-INFO／MANIFEST.MF 文件中的 Manifest-Version，所以请确保使用的 WAR 文件中包含此文件及所需参数**。 Tomcat 默认上传文件限制为 200M，可通过参数`上传 war 包的最大字节数`进行调整。
+    另外，Tomcat 已添加 manager-script 角色，所以用户也可以选择青云合作伙伴提供的 Jenkins 应用服务 <https://appcenter.qingcloud.com/apps/app-jbffg31u> 。运行之后访问 Jenkins 控制台，下载并配置 Jenkins 的 “Deploy to container” 插件，配置用户名为 tomcat，密码为环境变量中的密码，以此实现分发部署。
+    **在当前集群部署的 WAR 文件不支持自动部署到新添加的节点，使用 Tomcat Manager 的用户可以通过 undeploy & deploy 动作完成推送 WAR 文件到所有节点，使用 qingstor 的用户可以在集群控制菜单中通过 `基于QingStor重新部署 WAR` 将文件推送到各节点**。
+1. 我们会根据您设置的节点物理内存大小自动配置 Java 虚拟机的最小和最大堆栈大小，分别为四分之一和二分之一内存大小，也就是说如果选择单节点 4G 内存，则 xms 为 1G，xmx为 2G。
+1. Tomcat 默认打开 Garbage Collection，其配置于 Tomcat 启动脚本 catalina.sh 中，配置为 CATALINA_OPTS="-XX:+PrintGCDateStamps -Xloggc:/opt/apache-tomcat-7.0.78/logs/tomcat_gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=1 -XX:GCLogFileSize=100M" ，日志同样会被转发至日志服务器统一保存。
+1. 日志节点提供 ssh 访问权限，**默认用户名密码为 root/tomcat0pwd**。
+
+#### 可选：配置定制包日志及 JAVA_OPTS
+
+Tomcat 节点日志覆盖范围默认使用原生 Tomcat 配置，唯一区别是使用 log4j 收集及转发至日志服务器，用户可添加自身需要的包路径，各个包之间以**逗号**分隔，例如： `log4j.logger.org.apache.catalina.core.ContainerBase.[Catalina].[localhost],log4j.logger.org.apache.catalina.session`
+![可选：配置 JAVA_OPTS](package_log_config.png)
+
+如果您对 Java 虚拟机有自身的配置要求，比如上面提到的最小和最大堆栈大小，可以直接配置 JAVA_OPTS 参数，例如：
+`-Djavax.servlet.request.encoding=UTF-8 -Dfile.encoding=UTF-8 -Xms512m -Xmx1024m -XX:NewRatio=1 -XX:ReservedCodeCacheSize=128m`
+![可选：配置 JAVA_OPTS](java_opts_config.png)
+
+##### 注意
+
+用户务必预先校验参数的有效性，如果一旦某些参数无效，可能会导致集群启动失败，另外，JAVA_OPTS 的配置会覆盖环境变量中某些配置，包括字符编码 （javax.servlet.request.encoding 和 file.encoding）以及预分配的 xms 和 xms。
+
+
+##### 注意
+
+部署在集群中的 web 应用，应在 `web.xml` 中添加以下标签以支持集群。
+`<distributable/>`
+
+同时可加入 `<absolute-ordering />` 以加速 WAR 文件部署。例如：
+
+### 第7步: 用户协议
+
+阅读并同意青云 APP Center 用户协议之后即可开始部署应用。
+
+## 集群使用和管理
+
+### 访问 Tomcat Manager
+
+在集群创建完毕后，可以通过通过负载均衡器的地址访问 Tomcat Manager <http://load-balancer-address:listener-port>，输入部署集群时配置的用户名和密码，可以访问 Tomcat 提供的管理员页面，其会提供服务器监控、web app 部署和管理等功能。
+
+### 部署 war 文件
+
+如果在上面的配置环境变量的时候选择了 Tomcat Manager 为部署方式，可以访问 Manage App 页面部署 war 文件
+
+登录并跳转到 App 管理页面  
+
+![部署war文件](tomcat_mgr.png)
+
+上传并部署本地 war 文件  
+
+![部署war文件](deploy_war.png)
+
+#### 可选：使用 QingStor 存放 WAR 文件
+
+如果 WAR 文件的获取方式选择了 qingstor，请填写了 QingStor 配置信息，这时会认定为选择对象存储服务为 Tomcat 集群上传所需 WAR 文件
+
+![可选：使用 QingStor 存放 WAR 文件](qingstor_config.png)
+
+`access_key_id` 和 `secret_access_key` 是青云提供给用户的授权密钥，可以在 [`API密钥`](https://console.qingcloud.com/access_keys/) 中创建， Tomcat 应用将会使用这个密钥与 QingStor 对象存储服务进行交互，如果设置不正确可能导致文件无法正常下载。
+
+目前可选的区域请查阅 [QingStor 对象存储文档](https://docs.qingcloud.com/qingstor/index#区域及访问域名)，这里请填写相应的 Zone ID。建议选择与 QingStor 对象存储相同的区域部署 Tomcat 来获得更快的下载速度。
+
+存储区域需要提前创建好，只需要填写 Bucket 名称即可。这两项如果设置不正确，同样会导致文件无法正常下载。
+
+WAR 文件名为存储在 QingStor 上的文件名称，带文件类型后缀。
+
+集群启动初始化的时候，后台会自动访问 QingStor 服务，下载对应的 WAR 文件并部署在 Tomcat 各个节点。  
+
+![可选：使用 QingStor 存放 WAR 文件](qingstor_update.png)
+
+用户如果更新了 WAR 文件，或者有新的 WAR 文件需要部署，可以通过集群参数配置页面修改相应参数，保存后选择集群控制菜单中的 `基于QingStor重新部署 WAR`。  
+
+![可选：使用 QingStor 存放 WAR 文件](qingstor_update_btn.png)
+
+
+### 集群信息
+
+在集群创建完毕后，可以在控制台 `AppCenter -> 集群列表` 标签下看到目前已经创建的集群信息：
+
+![集群列表](cluster_list.png)
+
+点击集群 ID 可以查看该集群的详细信息：
+
+![集群信息](cluster_detail.png)
+
+集群的详细信息下方是对应节点的监控信息：
+
+![监控信息](node_monitor_thread.png)
+
+![监控信息](node_monitor_busy_thread.png)
+
+![监控信息](node_monitor_processing.png)
+
+![监控信息](node_monitor_requestnumber.png)
+
+
+### 添加节点
+
+点击 `新增节点` 可以增加 Tomcat 节点。
+
+![新增节点](node_add.png)
+
+同样的，点击 `删除` 可以删除节点。
+
+等待负载均衡器更新完毕后，节点变更即可生效。
+
+### 控制集群
+
+点击 `基本属性` 右侧的菜单按钮，可以查看能对当前集群进行的操作：
+
+![控制集群](cluster_ctrl.png)
+
+点击 `重启` ，可以在集群故障时重启集群：
+
+![重启角色](cluster_restart.png)
+
+点击 `扩容集群` ，可以在集群性能不足时提高集群的配置：
+
+![扩容集群](cluster_scaleup.png)
+
+点击 `依赖外部服务`信息栏中的删除按钮，可以删除创建集群时添加的 Redis 或者 MySql 服务，相应的 Tomcat 配置会更新，服务会重启：
+
+![扩容集群](links_del.png)
+
+
+## 并发测试用例参考
+
+### 测试工具
+
+使用 Apache Http Server 自带的 ApacheBench（ab） <https://httpd.apache.org/docs/2.4/programs/ab.html>
+
+### 测试环境
+
+Tomcat 集群：3节点超高性能型主机，4核 CPU，8G 内存  
+压测主机：超高性能型主机，4核 CPU，8G 内存  
+访问资源类型：静态页面  
+Tomcat 允许的最大线程数：2000  
+JVM XMS：2G  
+JVM XMX：4G  
+
+### 测试结果
+
+并发数：1500，总请求数：3000
+
+**Concurrency Level:      1500**  
+Time taken for tests:   24.344 seconds  
+**Complete requests:      3000**  
+**Failed requests:        0**  
+Total transferred:      3138000 bytes  
+HTML transferred:       2031000 bytes  
+**Requests per second:    123.23 [#/sec] (mean)**  
+Time per request:       12172.087 [ms] (mean)  
+Time per request:       8.115 [ms] (mean, across all concurrent requests)  
+Transfer rate:          125.88 [Kbytes/sec] received  
+
+Connection Times (ms)  
+              min  mean[+/-sd] median   max  
+Connect:        2  763 1073.9     81    5622  
+Processing:     4  906 1828.5    238   24319  
+Waiting:        4  906 1828.5    238   24319  
+Total:         28 1669 2300.7    842   24329  
+
+Percentage of the requests served within a certain time (ms)  
+  50%    842  
+  66%   1400  
+  75%   2301  
+  80%   2873  
+  90%   4465  
+  95%   6880  
+  98%   9093  
+  99%   9505  
+ 100%  24329 (longest request)  
+
+
+---

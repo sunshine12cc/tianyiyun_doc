@@ -1,0 +1,13 @@
+workspace:
+  base: /docs
+
+pipeline:
+  trigger:
+    image: plugins/downstream
+    server: http://172.16.61.3:8000
+    fork: true
+    repositories:
+      - qingcloud-product-docs/qingcloud-product-docs@staging
+    secrets: [ downstream_token ]
+    when:
+      branch: master

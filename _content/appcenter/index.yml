@@ -1,0 +1,83 @@
+- title: QingCloud AppCenter 2.0开发文档
+  url: appcenter
+  sub:
+    - title: 序言
+      url: docs/README.html
+    - title: 简介
+      url: docs/introduction/README.html
+    - title: 申请入驻
+      url: docs/business-process/README.html
+      sub:
+        - title: 入驻须知
+        - title: 合约管理
+    - title: 开发者须知
+      url: docs/must-read.html
+    - title: 快速入门
+      url: docs/quick-start/README.html
+      sub:
+        - title: ZooKeeper示例
+          url: docs/zookeeper.html
+        - title: Redis Standalone示例
+          url: docs/quick-start/redis-standalone.html
+    - title: 系统架构
+      url: docs/architechure.html
+    - title: 应用管理
+      url: docs/app-mgmt/README.html
+      sub:
+        - title: 创建应用
+          url: docs/app-mgmt/create-app.html
+        - title: 管理应用
+          url: docs/app-mgmt/manage-app.html
+    - title: 应用版本管理
+      url: docs/app-version-mgmt/README.html
+      sub:
+        - title: 创建应用版本
+          url: docs/app-version-mgmt/create-app-version.html
+        - title: 创建配置文件
+          url: docs/app-version-mgmt/create-app-config.html
+        - title: 制作镜像
+          url: docs/app-version-mgmt/images/README.html
+          sub:
+            - title: 制作KVM镜像
+              url: docs/app-version-mgmt/images/kvm.html
+            - title: 制作Docker镜像
+              url: docs/app-version-mgmt/images/docker.html
+        - title: 测试应用版本
+          url: docs/app-version-mgmt/test-app-version.html
+        - title: 提交应用版本
+          url: docs/app-version-mgmt/submit-app-version.html
+        - title: 上架和下架应用版本
+          url: docs/app-version-mgmt/manage-app-version.html
+        - title: 应用版本记录
+          url: docs/app-version-mgmt/app-version-history.html
+    - title: Metadata服务
+      url: docs/metadata-service.html
+    - title: 应用开发模版规范
+      url: docs/specifications/README.html
+      sub:
+      - title: 应用开发模版规范-基础版
+        url: docs/specifications/basic-specifications.html
+      - title: 应用开发模版规范-完整版
+        url: docs/specifications/specifications.html
+      - title: 应用实例生命周期
+        url: docs/specifications/lifecycle.html
+    - title: 用户列表
+      url: docs/users/README.html
+    - title: 集群实例列表
+      url: docs/resources/README.html
+    - title: 操作日志
+      url: docs/job-logs/README.html
+    - title: 工单系统
+      url: docs/tickets/README.html
+    - title: 通知中心
+      url: docs/notification/README.html
+    - title: 财务管理
+      url: docs/finance/README.html
+    - title: 调试指南
+      url: docs/debug.html
+    - title: API文档
+      url: ../product/api/action/appcenter2/
+    - title: 常见问题
+      url: docs/faq/README.html
+    - title: 版本变更记录
+      url: docs/changelogs.html

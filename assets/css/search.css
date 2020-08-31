@@ -1,0 +1,56 @@
+.hero.docs-hero {
+    height: 375px;
+}
+#searchbox {
+    margin-top: 60px;
+    font-size: 16px;
+    height: 42px;
+    padding: 0;
+    border-radius: 20px;
+    border: 1px solid #dee0e7;
+}
+#searchbox:focus {
+    border: 1px solid #00a971;
+}
+#searchbox input {
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    width: 100%;
+    padding: 6px 6px 6px 24px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.docs aside.menu {
+    height:auto;
+}
+.search-pagination {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
+.search-pagination .pager-item {
+    color: #68757f;
+    padding-left: 3px;
+    padding-right: 3px;
+    cursor: pointer;
+}
+.search-pagination .pager-item.is-active {
+    color: #00a971;
+}
+.pager-next {
+    margin-left: 1rem;
+}
+.search-pagers {
+    display: flex;
+    flex-flow: row wrap;
+}
+.pager-prev {
+    margin-right: 1rem;
+}
+
+

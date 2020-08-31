@@ -1,0 +1,32 @@
+workspace:
+  base: /docs
+
+clone:
+  fetch-staging:
+    image: plugins/git
+    depth: 50
+    submodule_update_remote: true
+    when:
+      branch: staging
+  fetch-production:
+    image: plugins/git
+    depth: 50
+    submodule_update_remote: false
+    when:
+      branch: master
+
+pipeline:
+  staging:
+    image: jekyll
+    commands:
+      - make build
+      - rsync -av --delete -e 'ssh -p 22 -i /data/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' _site/ root@172.16.61.3:/var/www/html
+    when:
+      branch: staging
+  production:
+    image: jekyll
+    commands:
+      - make build
+      - rsync -av --delete -e 'ssh -p 22 -i /data/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' _site/ root@172.16.61.2:/var/www/html
+    when:
+      branch: master

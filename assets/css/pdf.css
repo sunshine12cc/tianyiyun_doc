@@ -1,0 +1,805 @@
+@page {
+    size: A4 portrait;
+    margin: 2cm;
+}
+
+html {
+    background-color: #fff;
+    font-size: 16px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    min-width: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+@page:first {}
+
+/* styles for the left hand spread
+Bottom right book title, bottom left current page */
+@page {
+    @bottom-left {
+        margin: 10pt 0 30pt 0;
+        border-top: .25pt solid #666;
+        content: "QingCloud";
+        font-size: 9pt;
+        color: #333;
+        font-family: Roboto, SF Pro SC, SF Pro Display, SF Pro Icons, PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+    }
+    @bottom-right {
+        margin: 10pt 0 30pt 0;
+        border-top: .25pt solid #666;
+        content: counter(page) " /  " counter(pages);
+        font-size: 9pt;
+        font-family: Roboto, SF Pro SC, SF Pro Display, SF Pro Icons, PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+    }
+    @bottom-center {
+        margin: 10pt 0 30pt 0;
+        border-top: .25pt solid #666;
+        font-family: Roboto, SF Pro SC, SF Pro Display, SF Pro Icons, PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+    }
+ }
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    background: #fff;
+    line-height: 1.8;
+    font-family: Roboto, SF Pro SC, SF Pro Display, SF Pro Icons, PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    color: #00a971;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #004424;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+pre {
+    color: #68747f;
+    border-radius: 3px;
+    background-color: #f5f9fa;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 27px 30px;
+    margin-bottom: 20px;
+}
+
+ul {
+    margin-left: 0;
+    margin-right: 0;
+    line-height: 1.8;
+}
+
+ul ul {
+    list-style-type: circle;
+    margin-top: .5rem;
+}
+
+p {
+    line-height: 1.8;
+}
+
+p:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+h1:not(:first-child),
+h2:not(:first-child),
+h3:not(:first-child) {
+    margin-top: 40px;
+}
+
+hr {
+    height: 0;
+    margin: 15px 0;
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+hr:before {
+    display: table;
+    content: "";
+}
+
+hr:after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 21px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+h4 {
+    font-size: 14px;
+}
+
+h5 {
+    font-size: 12px;
+}
+
+h6 {
+    font-size: 11px;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    visibility: hidden;
+}
+
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a,
+h6:hover a {
+    visibility: visible;
+}
+
+blockquote {
+    margin: 0;
+}
+
+ul,
+ol {
+    padding: 0;
+    margin: 0;
+}
+
+ul li,
+ol li {
+    line-height: 1.8;
+    padding: 4px 0;
+}
+
+ol ol,
+ul ol {
+    list-style-type: lower-roman;
+}
+
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+    list-style-type: lower-alpha;
+}
+
+.docs-content {
+    font-size: 14px;
+}
+
+.section-nav li {
+    padding: 4px 0;
+}
+
+dd {
+    margin-left: 0;
+}
+
+code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace, SF Pro SC, SF Pro Display, PingFang SC, "Microsoft Yahei", Arial, sans-serif;
+}
+
+pre {
+    margin-top: 0;
+    margin-bottom: 0;
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace, SF Pro SC, SF Pro Display, PingFang SC, "Microsoft Yahei", Arial, sans-serif;
+}
+
+kbd {
+    background-color: #e7e7e7;
+    background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+    background-image: linear-gradient(#fefefe, #e7e7e7);
+    background-repeat: repeat-x;
+    border-radius: 2px;
+    border: 1px solid #cfcfcf;
+    color: #000;
+    padding: 3px 5px;
+    line-height: 10px;
+    font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace, SF Pro SC, SF Pro Display, PingFang SC, "Microsoft Yahei", Arial, sans-serif;
+    display: inline-block;
+}
+.page-index {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    margin-left: -50%;
+    border-bottom: none;
+}
+.page-index h1 {
+    border-bottom: none;
+}
+.page-index span {
+    display: block
+}
+
+.docs-content>*:first-child {
+    margin-top: 0!important;
+}
+
+.docs-content>*:last-child {
+    margin-bottom: 0!important;
+}
+
+.anchor {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    padding-right: 6px;
+    padding-left: 30px;
+    margin-left: -30px;
+}
+
+.anchor:focus {
+    outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    color: #3e464c;
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+h1 .octicon-link,
+h2 .octicon-link,
+h3 .octicon-link,
+h4 .octicon-link,
+h5 .octicon-link,
+h6 .octicon-link {
+    display: none;
+    color: #000;
+    vertical-align: middle;
+}
+
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+    height: 1rem;
+    padding-left: 8px;
+    margin-left: -30px;
+    line-height: 1;
+    text-decoration: none;
+}
+
+h1:hover .anchor .octicon-link,
+h2:hover .anchor .octicon-link,
+h3:hover .anchor .octicon-link,
+h4:hover .anchor .octicon-link,
+h5:hover .anchor .octicon-link,
+h6:hover .anchor .octicon-link {
+    display: inline-block;
+}
+
+h1 {
+    padding-bottom: .3rem;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+
+h2 {
+    padding-bottom: .3rem;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+h3 {
+    line-height: 1.43;
+}
+
+h4 {
+    margin: 4rem 0 .5rem 0;
+}
+
+h6 {
+    color: #777;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table,
+pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+hr {
+    height: 1px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+}
+
+ul,
+ol {
+    padding-left: 2rem;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+li > p {
+    margin-top: 16px;
+    margin-bottom: 0;
+}
+
+dl {
+    padding: 0;
+}
+
+dl dt {
+    padding: 0;
+    margin-top: 16px;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 500;
+}
+
+dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px;
+}
+
+blockquote {
+    padding: 0 15px;
+    color: #838e97;
+    background-color: #f5f9fa;
+    border-left: 4px solid #dbdbdb;
+    font-size: 14px;
+    line-height: 2.14;
+    letter-spacing: normal;
+    text-align: justify;
+    text-indent: 0;
+    position: initial;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 16px;
+}
+
+blockquote:before,
+blockquote:after {
+    display: none;
+}
+
+blockquote>:first-child {
+    margin-top: 0;
+}
+
+blockquote>:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    display: table;
+    width: 100%;
+    word-break: normal;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table,
+table thead {
+    border-top: 0 none;
+}
+
+table th {
+    font-weight: 500;
+    background: #f5f5f5;
+}
+
+table th,
+table td {
+    padding: 6px 13px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    word-break: break-word;
+    white-space: normal;
+    word-wrap: normal;
+}
+
+table tr {
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+}
+
+img {
+    max-width: 80%;
+    height: auto;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    margin: 15px auto;
+}
+
+code {
+    padding: 0;
+    padding-top: .2rem;
+    padding-bottom: .2rem;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(0, 0, 0, .04);
+    border-radius: 3px;
+}
+
+code:before,
+code:after {
+    letter-spacing: -.2rem;
+    content: "\00a0";
+}
+
+pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+}
+
+.highlight {
+    margin-bottom: 16px;
+}
+
+.highlight pre,
+pre {
+    padding: 16px;
+    overflow: visible;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+}
+
+.highlight pre {
+    margin-bottom: 0;
+    word-break: normal;
+}
+
+pre {
+    word-wrap: normal;
+}
+
+pre code {
+    display: inline;
+    max-width: initial;
+    padding: 0;
+    margin: 0;
+    overflow: initial;
+    line-height: inherit;
+    word-wrap: normal;
+    white-space: pre-wrap;
+    word-break: break-all;
+    background-color: transparent;
+    border: 0;
+}
+
+pre code:before,
+pre code:after {
+    content: normal;
+}
+
+.highlighted {
+    background: #fcfc03;
+    padding: 3px;
+}
+
+.section.docs>.content ul>li {
+    padding-left: 0;
+}
+
+.section.docs>.content ul>li:before {
+    display: none;
+}
+
+.highlight .hll {
+    background-color: #ffc;
+}
+
+.highlight {
+    background: #f0f0f0;
+}
+
+.highlight .c {
+    color: #60a0b0;
+    font-style: italic;
+}
+
+.highlight .err {
+    border: 1px solid red;
+}
+
+.highlight .k {
+    color: #007020;
+    font-weight: 700;
+}
+
+.highlight .o {
+    color: #666;
+}
+
+.highlight .cm {
+    color: #60a0b0;
+    font-style: italic;
+}
+
+.highlight .cp {
+    color: #007020;
+}
+
+.highlight .c1 {
+    color: #60a0b0;
+    font-style: italic;
+}
+
+.highlight .cs {
+    color: #60a0b0;
+    background-color: #fff0f0;
+}
+
+.highlight .gd {
+    color: #a00000;
+}
+
+.highlight .ge {
+    font-style: italic;
+}
+
+.highlight .gr {
+    color: red;
+}
+
+.highlight .gh {
+    color: navy;
+    font-weight: 700;
+}
+
+.highlight .gi {
+    color: #00a000;
+}
+
+.highlight .go {
+    color: #888;
+}
+
+.highlight .gp {
+    color: #c65d09;
+    font-weight: 700;
+}
+
+.highlight .gs {
+    font-weight: 700;
+}
+
+.highlight .gu {
+    color: purple;
+    font-weight: 700;
+}
+
+.highlight .gt {
+    color: #04d;
+}
+
+.highlight .kc,
+.highlight .kd,
+.highlight .kn {
+    color: #007020;
+    font-weight: 700;
+}
+
+.highlight .kp {
+    color: #007020;
+}
+
+.highlight .kr {
+    color: #007020;
+    font-weight: 700;
+}
+
+.highlight .kt {
+    color: #902000;
+}
+
+.highlight .m {
+    color: #40a070;
+}
+
+.highlight .s,
+.highlight .na {
+    color: #4070a0;
+}
+
+.highlight .nb {
+    color: #007020;
+}
+
+.highlight .nc {
+    color: #0e84b5;
+    font-weight: 700;
+}
+
+.highlight .no {
+    color: #60add5;
+}
+
+.highlight .nd {
+    color: #555;
+    font-weight: 700;
+}
+
+.highlight .ni {
+    color: #d55537;
+    font-weight: 700;
+}
+
+.highlight .ne {
+    color: #007020;
+}
+
+.highlight .nf {
+    color: #06287e;
+}
+
+.highlight .nl {
+    color: #002070;
+    font-weight: 700;
+}
+
+.highlight .nn {
+    color: #0e84b5;
+    font-weight: 700;
+}
+
+.highlight .nt {
+    color: #062873;
+    font-weight: 700;
+}
+
+.highlight .nv {
+    color: #bb60d5;
+}
+
+.highlight .ow {
+    color: #007020;
+    font-weight: 700;
+}
+
+.highlight .w {
+    color: #bbb;
+}
+
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo {
+    color: #40a070;
+}
+
+.highlight .sb,
+.highlight .sc {
+    color: #4070a0;
+}
+
+.highlight .sd {
+    color: #4070a0;
+    font-style: italic;
+}
+
+.highlight .s2 {
+    color: #4070a0;
+}
+
+.highlight .se {
+    color: #4070a0;
+    font-weight: 700;
+}
+
+.highlight .sh {
+    color: #4070a0;
+}
+
+.highlight .si {
+    color: #70a0d0;
+    font-style: italic;
+}
+
+.highlight .sx {
+    color: #c65d09;
+}
+
+.highlight .sr {
+    color: #235388;
+}
+
+.highlight .s1 {
+    color: #4070a0;
+}
+
+.highlight .ss {
+    color: #517918;
+}
+
+.highlight .bp {
+    color: #007020;
+}
+
+.highlight .vc,
+.highlight .vg,
+.highlight .vi {
+    color: #bb60d5;
+}
+
+.highlight .il {
+    color: #40a070;
+}

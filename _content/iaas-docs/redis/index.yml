@@ -1,0 +1,49 @@
+- title: 数据库缓存 - Redis
+  url: redis
+  sub:
+    - title: 产品介绍
+      url: intro
+      sub:
+        - title: 产品介绍
+          url: introduction
+        - title: 产品功能
+          url: function
+        - title: 产品优势
+          url: advantages
+        - title: 使用场景
+          url: scene
+    - title: 计费购买
+      url: purchase
+      sub:
+        - title: 准备工作
+          url: price
+    - title: 入门使用
+      url: tutorial
+      sub:
+        - title: 部署 **Redis standalone** 服务
+          url: create
+        - title: 创建 Redis cluster App
+          url: create_cluster
+    - title: 进阶教程
+      url: advanced
+      sub:
+        - title: Redis 进阶
+          url: redis_advanced
+        - title: Redis Cluster 进阶
+          url: cluster_advanced
+        - title: Redis Cluster 测试
+          url: cluster_test
+        - title: Redis Cluster 在线伸缩
+          url: cluster_scaling
+        - title: Redis Cluster 更多
+          url: cluster_other
+    - title: 最佳实践
+      url: practices
+      sub:
+        - title: Redis 多可用区（同城多活）测试
+          url: redis_scmt
+        - title: Redis Cluster 多可用区（同城多活）测试
+          url: cluster_scmt
+    - title: 常见问题
+      url: knowledge
+      sub:

@@ -1,0 +1,68 @@
+{% assign cur = page.url | split: "/" %}
+{% for i in site.data.toc %}
+  {% if i.exclude != true %}
+    {% if cur[1] == i.url %}
+      <li><a class="is-active" href="/{{ i.url }}">{{ i.title }}</a>
+    {% else %}
+      <li><a href="/{{ i.url }}">{{ i.title }}</a>
+    {% endif %}
+      {% if i.sub[0] %}
+        {% if cur[1] == i.url %}
+          <ul class="is-visible">
+        {% else %}
+          <ul class="is-hidden">
+        {% endif %}
+          {% for j in i.sub %}
+            {% if j.exclude != true %}
+                {% assign html_suffix = j.url | append: ".html" %}
+                {% if cur[2] == j.url or cur[2] == html_suffix %}
+                  <li><a class="is-active" href="/{{ i.url }}/{{ j.url }}">{{ j.title }}</a>
+                {% else %}
+                  <li><a href="/{{ i.url }}/{{ j.url }}">{{ j.title }}</a>
+                {% endif %}
+                {% if j.sub[0] %}
+                  {% if cur[2] == j.url %}
+                    <ul class="is-visible">
+                  {% else %}
+                    <ul class="is-hidden">
+                  {% endif %}
+                  {% for k in j.sub %}
+                    {% if k.exclude != true %}
+                      {% assign html_suffix =  k.url | append: ".html" %}
+                      {% if cur[3] == k.url or cur[3] == html_suffix %}
+                        <li><a class="is-active" href="/{{ i.url }}/{{ j.url }}/{{ k.url }}">{{ k.title }}</a>
+                      {% else %}
+                        <li><a href="/{{ i.url }}/{{ j.url }}/{{ k.url }}">{{ k.title }}</a>
+                      {% endif %}
+                      {% if k.sub[0] %}
+                        {% if cur[3] == k.url %}
+                          <ul class="is-visible">
+                        {% else %}
+                          <ul class="is-hidden">
+                        {% endif %}
+                        {% for l in k.sub %}
+                          {% if l.exclude != true %}
+                            {% assign html_suffix = l.url | append: ".html" %}
+                            {% if cur[4] == l.url or cur[4] == html_suffix %}
+                              <li><a class="is-active" href="/{{ i.url }}/{{ j.url }}/{{ k.url }}/{{ l.url }}">{{ l.title }}</a>
+                            {% else %}
+                              <li><a href="/{{ i.url }}/{{ j.url }}/{{ k.url }}/{{ l.url }}">{{ l.title }}</a>
+                            {% endif %}
+                          </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </li>
+                    {% endif %}
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endif %}
+{% endfor %}
