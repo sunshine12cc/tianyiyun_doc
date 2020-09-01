@@ -2,71 +2,71 @@
   url: qingstor
   sub:
     - title: 产品简介
-      url: index
+      url: index.html
     - title: 消费说明
-      url: price
+      url: price.html
     - title: 快速入门
       exclude: true
     - title: 访问控制
-      url: access_control
+      url: access_control.html
     - title: 访问日志归档
-      url: logging
+      url: logging.html
     - title: 生命周期
-      url: lifecycle
+      url: lifecycle.html
     - title: 跨区域复制
-      url: replication
+      url: replication.html
     - title: 数据加密
-      url: encryption
+      url: encryption.html
     - title: 数据处理
       url: data_process
       sub:
         - title: 图片处理
-          url: image_process
+          url: image_process.html
         - title: 音视频转码
-          url: media_transcoder
+          url: media_transcoder.html
         - title: 第三方数据处理
-          url: third_party
+          url: third_party.html
     - title: 场景化解决方案
       url: solutions
       sub:
         - title: 数据迁移
-          url: migrate
+          url: migrate.html
         - title: 实时数据增量备份
-          url: backup
+          url: backup.html
         - title: 移动 APP 接入
-          url: app_integration
+          url: app_integration.html
         - title: 静态网站托管
-          url: web_hosting
+          url: web_hosting.html
     - title: 控制台指南
       url: guide
       sub:
         - title: Bucket 管理
-          url: bucket_manage
+          url: bucket_manage.html
         - title: 文件夹管理
-          url: folder_manage
+          url: folder_manage.html
         - title: Object 管理
-          url: object_manage
+          url: object_manage.html
         - title: 数据处理
-          url: data_process
+          url: data_process.html
         - title: 监控与报表
-          url: monitor
+          url: monitor.html
     - title: API 文档
       url: api
       sub:
         - title: 简介
-          url: common/overview
+          url: common/overview.html
         - title: 公共字段
-          url: common/common_header
+          url: common/common_header.html
         - title: 扩展字段
-          url: common/extend_header
+          url: common/extend_header.html
         - title: 错误信息
-          url: common/error_code
+          url: common/error_code.html
         - title: 签名验证
-          url: common/signature
+          url: common/signature.html
         - title: 自定义元数据
-          url: common/metadata
+          url: common/metadata.html
         - title: 数据加密
-          url: common/encryption
+          url: common/encryption.html
         - title: Service API
           url: service
           sub:
@@ -75,79 +75,79 @@
           url: bucket
           sub:
             - title: GET Bucket (List Objects)
-              url: get
+              url: get.html
             - title: PUT Bucket
-              url: put
+              url: put.html
             - title: DELETE Bucket
-              url: delete
+              url: delete.html
             - title: Delete Multiple Objects
-              url: delete_multiple
+              url: delete_multiple.html
             - title: HEAD Bucket
-              url: head
+              url: head.html
             - title: GET Bucket Statistics
-              url: get_stats
+              url: get_stats.html
             - title: List Multipart Uploads
-              url: list_multipart_uploads
+              url: list_multipart_uploads.html
             - title: Bucket ACL
-              url: acl
+              url: acl.html
             - title: Bucket CORS
-              url: cors
+              url: cors.html
             - title: Bucket Policy
-              url: policy
+              url: policy.html
             - title: Bucket External Mirror
-              url: external_mirror
+              url: external_mirror.html
             - title: Bucket Notification
-              url: notification
+              url: notification.html
             - title: Bucket CNAME
               exclude: true
-              url: cname
+              url: cname.html
             - title: Bucket Website
               exclude: true
-              url: website
+              url: website.html
             - title: Bucket Lifecycle
-              url: lifecycle
+              url: lifecycle.html
             - title: Bucket Logging
-              url: logging
+              url: logging.html
             - title: Bucket Replication
-              url: replication
+              url: replication.html
         - title: Object API
           url: object
           sub:
             - title: GET Object
-              url: get
+              url: get.html
             - title: POST Object
-              url: post
+              url: post.html
             - title: PUT Object
-              url: put
+              url: put.html
             - title: PUT Object - Copy
-              url: copy
+              url: copy.html
             - title: PUT Object - Move
-              url: move
+              url: move.html
             - title: PUT Object - Fetch
-              url: fetch
+              url: fetch.html
             - title: Append Object
-              url: append
+              url: append.html
             - title: DELETE Object
-              url: delete
+              url: delete.html
             - title: HEAD Object
-              url: head
+              url: head.html
             - title: OPTIONS Object
-              url: options
+              url: options.html
             - title: Multipart
               url: multipart
               sub:
                 - title: Initiate MultiPart Upload
-                  url: initiate_multipart_upload
+                  url: initiate_multipart_upload.html
                 - title: Upload Object Part
-                  url: upload_multipart
+                  url: upload_multipart.html
                 - title: Copy Object Part
-                  url: copy_multipart
+                  url: copy_multipart.html
                 - title: List Object parts
-                  url: list_multipart
+                  url: list_multipart.html
                 - title: Abort Multipart Upload
-                  url: abort_multipart_upload
+                  url: abort_multipart_upload.html
                 - title: Complete Multipart Upload
-                  url: complete_multipart_upload
+                  url: complete_multipart_upload.html
     - title: SDK 文档
       url: sdk
       sub:
@@ -155,45 +155,45 @@
           url: python
           sub:
             - title: 新版 Python SDK
-              url: qingstor_sdk
+              url: qingstor_sdk.html
             - title: 旧版 Python SDK
-              url: qingcloud_sdk
+              url: qingcloud_sdk.html
         - title: Go SDK
-          url: go
+          url: go.html
         - title: Ruby SDK
-          url: ruby
+          url: ruby.html
         - title: PHP SDK
-          url: php
+          url: php.html
         - title: JavaScript SDK
-          url: js
+          url: js.html
         - title: Swift SDK
-          url: swift
+          url: swift.html
         - title: Java SDK
-          url: java
+          url: java.html
         - title: Scala SDK
-          url: scala
+          url: scala.html
         - title: .NET SDK
-          url: net
+          url: net.html
         - title: C/C++ SDK
-          url: cpp
+          url: cpp.html
     - title: 客户端工具
       url: developer_tools
       sub:
         - title: qingstor-cli
-          url: cli
+          url: cli.html
         - title: qsctl
-          url: qsctl
+          url: qsctl.html
         - title: qscamel
-          url: qscamel
+          url: qscamel.html
         - title: qsftpd
-          url: qsftpd
+          url: qsftpd.html
         - title: 本地盘工具
           url: local_fs_tools
           sub:
             - title: qsfs(Alpha)
-              url: qsfs
+              url: qsfs.html
             - title: Mountain Duck
-              url: mountain_duck
+              url: mountain_duck.html
         - title: snips
           exclude: true
         - title: qingstor-demo-signature-server-nodejs
@@ -202,28 +202,28 @@
       url: third_party_integration
       sub:
         - title: Logstash Input QingStor
-          url: logstash_input
+          url: logstash_input.html
         - title: Logstash Output QingStor
-          url: logstash_output
+          url: logstash_output.html
         - title: WordPress plugin for QingStor
-          url: wordpress_plugin_for_qingstor
+          url: wordpress_plugin_for_qingstor.html
     - title: S3 兼容
       url: s3
       sub:
         - title: 兼容接口
-          url: compatible_apis
+          url: compatible_apis.html
         - title: 兼容公共头
-          url: compatible_headers
+          url: compatible_headers.html
         - title: 兼容工具
-          url: compatible_tools
+          url: compatible_tools.html
         - title: 使用示例
-          url: examples
+          url: examples.html
           # sub:
           #   - title: s3fs
           #   - title: S3 Browser
           #   - title: CloudBerry Drive
           #   - title: Commavault
     - title: 历史变更
-      url: history
+      url: history.html
     - title: FAQ 常见问题
-      url: faq
+      url: faq.html
