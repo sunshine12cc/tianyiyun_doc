@@ -1,0 +1,48 @@
+---
+---
+
+# Bucket API
+
+- [GET Bucket (List Objects)](get.html) 列取对象
+- [PUT Bucket](put.html) 创建 Bucket
+- [DELETE Bucket](delete.html) 删除 Bucket
+- [Delete Multiple Objects](delete_multiple.html) 批量删除对象
+- [HEAD Bucket](head.html) 获取 Bucket 元信息
+- [GET Bucket Statistics](get_stats.html) Bucket 使用统计
+- [List Multipart Uploads](list_multipart_uploads.html) 列取分段上传
+- [Bucket ACL](acl/index.html) 用户授权
+  - [PUT Bucket ACL](acl/put_acl.html)
+  - [GET Bucket ACL](acl/get_acl.html)
+- [Bucket Policy](policy/index.html) 授权策略
+  - [Bucket Policy Condition](policy/policy_condition.html)
+  - [PUT Bucket Policy](policy/put_policy.html)
+  - [GET Bucket Policy](policy/get_policy.html)
+  - [DELETE Bucket Policy](policy/delete_policy.html)
+- [Bucket CORS](cors/index.html) 跨站请求设置
+  - [PUT Bucket CORS](cors/put_cors.html)
+  - [GET Bucket CORS](cors/get_cors.html)
+  - [DELETE Bucket CORS](cors/delete_cors.html)
+- [Bucket CNAME](cname/index.html) 域名别名设置
+  - [PUT Bucket CNAME](cname/put_cname.html)
+  - [GET Bucket CNAME](cname/get_cname.html)
+  - [DELETE Bucket CNAME](cname/delete_cname.html)
+- [Bucket External Mirror](external_mirror/index.html) 外部镜像
+  - [PUT Bucket External Mirror](external_mirror/put_external_mirror.html)
+  - [GET Bucket External Mirror](external_mirror/get_external_mirror.html)
+  - [DELETE Bucket External Mirror](external_mirror/delete_external_mirror.html)
+- [Bucket Notification](notification/index.html) 事件处理
+  - [PUT Bucket Notification](notification/put_notification.html)
+  - [GET Bucket Notification](notification/get_notification.html)
+  - [DELETE Bucket Notification](notification/delete_notification.html)
+- [Bucket Lifecycle](lifecycle/index.html) 生命周期
+  - [PUT Bucket Lifecycle](lifecycle/put_lifecycle.html)
+  - [GET Bucket Lifecycle](lifecycle/get_lifecycle.html)
+  - [DELETE Bucket Lifecycle](lifecycle/delete_lifecycle.html)
+- [Bucket Logging](logging/index.html) 访问日志归档
+  - [PUT Bucket Logging](logging/put_logging.html)
+  - [GET Bucket Logging](logging/get_logging.html)
+  - [DELETE Bucket Logging](logging/delete_logging.html)
+- [Bucket Replication](replication/index.html) 跨区域复制
+  - [PUT Bucket Replication](replication/put_replication.html)
+  - [GET Bucket Replication](replication/get_replication.html)
+  - [DELETE Bucket Replication](replication/delete_replication.html)
