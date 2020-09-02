@@ -113,8 +113,14 @@ jQuery(function() {
         $('.result-count').html('（'+ data.hits.total +'）');
         var results = '';
         $.each(data.hits.hits, function(index, item) {
-          var title = item.highlight.title || item._source.title;
-          var body = sub_str(item.highlight.content || item._source.content,400);
+		  if(item.highlight){
+			var title = item.highlight.title;
+			var body = sub_str(item.highlight.content || item._source.content,400);
+		  }else{
+			var title = item._source.title;
+			var body = sub_str(item._source.content,400);
+		  }
+          
           results +=
             '<div class="result-item">' +
               '<h5 class="result-title">' +
