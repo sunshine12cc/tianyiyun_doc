@@ -1,7 +1,7 @@
 <?php
 class search_api
 {
-    const URL_ROOT = 'http://103.235.85.187:9200/official_website_sdcs/_search';
+    const URL_ROOT = 'http://127.0.0.1:9200/official_website_sdcs/_search';
     const CHARSET = 'UTF-8';
     /**GET*/
     private $msGets = '';
