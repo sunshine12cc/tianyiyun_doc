@@ -47,6 +47,78 @@
           url: ecs2qing.html
         - title: 常见问题及解答
           url: faq_docs.html
+    - title: 网络与CDN
+      url: network
+      sub:
+        - title: VPC专属私有网络
+          url: vpc
+        - title: SDN网络直通
+          url: sdn_passthrough
+        - title: 弹性公网EIP
+          url: eip
+        - title: IPv6网络配置指南
+          url: IPv6_config
+        - title: 负载均衡
+          url: loadbalancer
+          sub:
+            - title: 用户指南
+              url: lb_user_guide
+            - title: 跨Region组网及负载均衡
+              url: lb_border
+            - title: 跨越公网的负载均衡
+              url: lb_natgw
+            - title: 常见问题
+              url: lb_faq
+        - title: 路由表
+          url: route_table
+        - title: NAT网关
+          url: nat_gateway
+        - title: CDN 服务
+          url: cdn
+        - title: DNS 服务（免费公测中）
+          url: dns_rw
+          sub:
+            - title: 入门教程
+              url: dns_basic
+            - title: 四种解析模式
+              url: dns_mode
+            - title: 配置解析线路
+              url: dns_view
+            - title: 管理独立子域
+              url: dns_subzone
+            - title: 解析验证方法
+              url: dns_check
+            - title: 常见问题
+              url: dns_faq
+            - title: API 文档
+              url: dns_api
+        - title: 域名管理
+          url: dns
+        - title: 专线接入
+          url: dedicated_line
+        - title: 网络流量镜像
+          url: span
+        - title: VPN 服务
+          url: vpn
+        - title: IPSec 隧道
+          url: ipsec
+        - title: GRE 隧道
+          url: gre
+        - title: 边界路由器
+          url: border
+        - title: 网络1.0
+          url: topology
+        - title: AppCenter网络配置
+          url: appcenter_network_config
+          sub:
+            - title: 创建私有网络
+              url: create_vxnet
+            - title: 配置端口转发
+              url: config_portmapping
+            - title: 配置负载均衡器
+              url: public_loadbalancer
+            - title: 示例
+              url: example
     - title: 光格 SD-WAN
       url: sd_wan
       sub:
